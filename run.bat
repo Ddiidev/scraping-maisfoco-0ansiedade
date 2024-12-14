@@ -1,0 +1,1 @@
+v -no-skip-unused -d veb_livereload watch --only-watch=*.v,*.html,*.css,*.js --before "cls" run .

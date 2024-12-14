@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Neubrutalism Example</title>
+	@css 'assets/base.css'
+	@css 'assets/neubrutalism.css'
+	@js 'assets/htmx.js'
+</head>
+
+<body>
+	@include '/src/slices/shareds/components/toogle-darkmode/toggledarkmode.html'
+
+	<section class="container margin-bt">
+
+		<form hx-post="@ctx.req.url/scraping" hx-target="#result-scraping" hx-indicator="#loading-result-scraping">
+			<div>
+				<div role="group">
+					<input type="text" name="urlToCrawler" placeholder="Digite a Url para Scraping" required
+						value="https://www.amazon.com.br/gp/product/8575225634/ref=ewc_pr_img_1?smid=A1ZZFT5FULY4LN&psc=1" />
+
+					<button type="submit"><b>Trazer dados</b></button>
+				</div>
+				<div class="margin-bt m-childs-right">
+					<gridflex>
+						<div class="pos-html">
+							${ badge_construct(.success, '/assets/icons/validate-svgrepo-com.svg', 'Amazom Livros') }
+						</div>
+						<div class="pos-html">
+							${ badge_construct(.failure, '/assets/icons/invalide-svgrepo-com.svg', 'InstantGames') }
+						</div>
+						<div class="pos-html">
+							${ badge_construct(.failure, '/assets/icons/invalide-svgrepo-com.svg', 'EpicGames') }
+						</div>
+						<div class="pos-html">
+							${ badge_construct(.failure, '/assets/icons/invalide-svgrepo-com.svg', 'Steam') }
+						</div>
+						<div class="pos-html">
+							${ badge_construct(.failure, '/assets/icons/invalide-svgrepo-com.svg', 'Netflix') }
+						</div>
+						<div class="pos-html">
+							${ badge_construct(.failure, '/assets/icons/invalide-svgrepo-com.svg', 'Prime') }
+						</div>
+						<div class="pos-html">
+							${ badge_construct(.failure, '/assets/icons/invalide-svgrepo-com.svg', 'Disney+') }
+						</div>
+						<div class="pos-html">
+							${ badge_construct(.failure, '/assets/icons/invalide-svgrepo-com.svg', 'HBO') }
+						</div>
+					</gridflex>
+				</div>
+			</div>
+
+		</form>
+
+		<div>
+			<div id="loading-result-scraping" class="htmx-indicator loading-dots margin-bt">Carregando</div>
+			<div id="result-scraping"></div>
+		</div>
+
+
+	</section>
+
+	@js 'components/toogle-darkmode/toggleDarkMode.js'
+	@js 'assets/base.js'
+</body>
+</html>

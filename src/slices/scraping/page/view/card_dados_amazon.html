@@ -1,0 +1,41 @@
+<article>
+    <section>
+        <div class="flex justify-start align-center">
+            <img class="rounded-square margin-lr" style="height: 76px;" src="@dados.thumbnails_links" />
+            <h2 class="margin-lr">@dados.title</h2>
+        </div>
+        <grid>
+            <div>
+                <img src="@dados.images_links" />
+            </div>
+
+            <div class="flex" style="height: 100%;">
+                <p>Autor: <b>@dados.author</b></p>
+                <div style="flex-grow: 1;">
+                    <p>Sinopse:</p><textarea no-outline readonly class="font-bold"
+                        style="width: 100%; height: 80%;">@dados.sinopse</textarea>
+                </div>
+                <div>
+                    <p>Avaliação geral: <b>@dados.geral_evaluation</b></p>
+                    <p>Nº Avaliações: <b>@dados.qtde_evaluation</b></p>
+                </div>
+            </div>
+        </grid>
+
+        <grid class="margin-bt">
+            @if dados.price_printed != none
+            <article>
+                <h4 class="margin-lr">Preço (físico): <b>R$ @price_printed </b></h4>
+            </article>
+            @endif
+
+            @if dados.price_kindle_ebook != none
+            <article>
+                <h4 class="margin-lr">Preço (digital): <b>R$ @price_kindle_ebook</b></h3>
+            </article>
+            @endif
+        </grid>
+    </section>
+
+    <button class="container-full padding-bt" hx-post="/save" hx-vals='@json_dados'>Salvar</button>
+</article>
