@@ -5,11 +5,11 @@ import slices.scraping.models
 
 pub struct RepoAmazon {}
 
-pub fn RepoAmazon.new(repo models.AmazomScraping) ! {
+pub fn RepoAmazon.new(model models.AmazonScraping) ! {
 	con := db.new()!
 
 	sql con {
-		insert repo into models.AmazomScraping
+		insert model into models.AmazonScraping
 	}!
 	
 }

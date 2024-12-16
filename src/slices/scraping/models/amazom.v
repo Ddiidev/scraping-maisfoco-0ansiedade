@@ -2,8 +2,8 @@ module models
 
 pub type ThumbLink = string
 
-@[table: 'AmazomScrapings']
-pub struct AmazomScraping {
+@[table: 'AmazonScrapings']
+pub struct AmazonScraping {
 pub:
 	price_printed      ?f64
 	price_kindle_ebook ?f64

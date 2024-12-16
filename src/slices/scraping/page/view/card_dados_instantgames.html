@@ -1,48 +1,48 @@
 <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
-<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/include-vals.js"></script>
+<script src="https://unpkg.com/htmx.org@@1.9.12/dist/ext/include-vals.js"></script>
 
 <article>
     <section>
-        <div class="flex justify-start align-center">
-            <img class="rounded-square margin-lr" style="height: 76px;" src="@dados.thumbnails_links" />
+        <div class="flex justify-start align-center margin-bot">
+            <img class="rounded-square margin-lr" style="height: 76px;" src="@banner_img" />
             <h2 class="margin-lr">@dados.title</h2>
         </div>
-        <grid>
+        <grid class="margin-bot">
             <div>
-                <img src="@dados.images_links" />
+                <img class="margin-bot" src="@banner_img" />
+                <p>Tags:</p>
+                <gridflex>
+                    @badges_html
+                </gridflex>
             </div>
 
-            <div class="flex" style="height: 100%;">
-                <p>Autor: <b>@dados.author</b></p>
-                <div style="flex-grow: 1;">
-                    <p>Sinopse:</p><textarea no-outline readonly class="font-bold"
-                        style="width: 100%; height: 80%;">@dados.sinopse</textarea>
+            <div style="min-height: 600px;">
+                <p>Studio: <b>@dados.studio</b></p>
+                <p>Publicadora: <b>@dados.publisher</b></p>
+                <p>Plataforma de ativação: <b>@dados.activating_plataform</b></p>
+                <p>Gêneros: <b>@dados.genders</b></p>
+                <div class="margin-bot" style="flex-grow: 1;">
+                    <p>Sobre:</p>
+                    <textarea no-outline readonly class="font-bold"
+                        style="width: 100%; height: 80%; resize: none;">@dados.about</textarea>
                 </div>
-                <div>
-                    <p>Avaliação geral: <b>@dados.geral_evaluation</b></p>
-                    <p>Nº Avaliações: <b>@dados.qtde_evaluation</b></p>
+                <div style="margin-top: 20px;">
+                    <p>Avaliação: <b>@dados.review_general</b></p>
+                    <p>Nº Avaliações: <b>@dados.qtde_review</b></p>
                 </div>
             </div>
         </grid>
 
         <grid class="margin-bt">
-            @if dados.price_printed != none
             <article>
-                <h4 class="margin-lr">Preço (físico): <b>$ @price_printed </b></h4>
+                <h4 class="margin-lr">Preço: <b>$ @price (-${discount}% $ <s>@old_price</s>) </b></h4>
             </article>
-            @endif
-
-            @if dados.price_kindle_ebook != none
-            <article>
-                <h4 class="margin-lr">Preço (digital): <b>$ @price_kindle_ebook</b></h3>
-            </article>
-            @endif
         </grid>
     </section>
 
     <form hx-post="@url/save/@save_is" hx-ext="json-enc" hx-vals="@json_dados" hx-target="#result-modal">
         <button type="submit" class="container-full padding-bt">Salvar</button>
-        
+
         <input type="number" step="0.01" id="price_printed" name="price_printed" style="display: none;" />
         <input type="number" step="0.01" id="price_kindle_ebook" name="price_kindle_ebook" style="display: none;" />
         <input type="number" step="0.1" id="geral_evaluation" name="geral_evaluation" style="display: none;" />

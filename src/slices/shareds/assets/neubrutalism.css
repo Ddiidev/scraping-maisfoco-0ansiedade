@@ -1,10 +1,14 @@
+@import url('./neubrutalism-essentials.css');
+
 :root {
 	--primary-color: #6ecb81;
 	--border-color: #000;
 	--background-color: #fefefe;
 	--font-color: #333;
 	--secondary-color: #61a761;
+	--none-color: #cccccc;
 	--font-family: "Space Mono", monospace;
+	--modal-neubrutalis: rgba(27, 27, 27, 0.5);
 }
 
 .dark-mode {
@@ -13,6 +17,8 @@
 	--background-color: #1a1f2f;
 	--font-color: #ddd;
 	--secondary-color: #61a761;
+	--none-color: #3d3d3d;
+	--modal-neubrutalis: rgba(189, 189, 189, 0.5);
 }
 
 :focus {
@@ -60,10 +66,37 @@ button:active {
 }
 
 article {
+	position: relative;
 	background-color: var(--background-color);
 	border: 3px solid var(--border-color);
 	padding: 20px;
 	box-shadow: 6px 6px 0 var(--border-color);
+}
+
+article>header {
+	position: sticky;
+	top: 0;
+	background-color: var(--background-color);
+	z-index: 10;
+	border: none;
+	border-bottom: 3px solid var(--border-color);
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: -20px;
+	margin-right: -20px;
+}
+
+article>footer {
+	position: sticky;
+	bottom: 0;
+	background-color: var(--background-color);
+	z-index: 10;
+	border: none;
+	border-top: 3px solid var(--border-color);
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: -20px;
+	margin-right: -20px;
 }
 
 table {
@@ -107,12 +140,6 @@ img[unset-default] {
 
 [dots] {
 	border-style: dotted;
-}
-
-.hr {
-	border: none;
-	border-top: 3px solid var(--border-color);
-	margin: 20px 0;
 }
 
 .vr {
@@ -249,90 +276,6 @@ gridflex>* {
 	transition: opacity 0.5s, visibility 0.5s;
 }
 
-.container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 16px;
-}
-
-.container-full {
-	width: 100%;
-	margin: 0;
-	padding: 0;
-}
-
-.font-bold {
-	font-weight: bold;
-}
-
-.font-italic {
-	font-style: italic;
-}
-
-.text-left {
-	text-align: left;
-}
-
-.text-right {
-	text-align: right;
-}
-
-.text-justify {
-	text-align: justify;
-}
-
-.justify-left {
-	justify-content: flex-start;
-}
-
-.justify-right {
-	justify-content: flex-end;
-}
-
-.justify-center {
-	justify-content: center;
-}
-
-.align-center {
-	align-items: center;
-}
-
-.flex {
-	display: flex !important;
-}
-
-.w-content {
-	width: fit-content;
-}
-
-.margin-bt {
-	margin-top: 9px;
-	margin-bottom: 9px;
-}
-
-.margin-lr {
-	margin-left: 9px;
-	margin-right: 9px;
-}
-
-.m-childs-left>* {
-	margin-left: 9px;
-}
-
-.m-childs-right>* {
-	margin-right: 9px;
-}
-
-.padding-bt {
-	padding-top: 9px;
-	padding-bottom: 9px;
-}
-
-.padding-lr {
-	padding-left: 9px;
-	padding-right: 9px;
-}
-
 ::-webkit-scrollbar {
 	cursor: default;
 	width: 12px;
@@ -359,7 +302,7 @@ gridflex>* {
 	display: inline-block;
 	padding: 5px 10px;
 	background-color: var(--primary-color);
-	color: #fff;
+	color: var(--font-color);
 	font-size: 14px;
 	font-weight: bold;
 	text-align: center;
@@ -370,6 +313,10 @@ gridflex>* {
 
 .badge:hover {
 	transform: translate(-1px, -1px);
+}
+
+.badge-none {
+	background-color: var(--none-color);
 }
 
 .badge-success {
