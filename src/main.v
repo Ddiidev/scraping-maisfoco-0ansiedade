@@ -10,7 +10,6 @@ pub struct Wservice {
 }
 
 fn main() {
-	
 	mut wservice := &Wservice{}
 
 	mut ctrl_page_index := page_scraping.PageIndex{}
@@ -21,11 +20,12 @@ fn main() {
 	wservice.handle_static('src/slices/shareds/components', false)!
 	wservice.mount_static_folder_at('src/slices/shareds/components', '/components')!
 
-	wservice.register_controller[page_scraping.PageIndex, wcontext.WsCtx]('/inicio', mut ctrl_page_index)!
+	wservice.register_controller[page_scraping.PageIndex, wcontext.WsCtx]('/inicio', mut
+		ctrl_page_index)!
 
 	veb.run[Wservice, wcontext.WsCtx](mut wservice, 3030)
 }
 
 fn (ws &Wservice) index(mut ctx wcontext.WsCtx) veb.Result {
-	return ctx.redirect('/inicio')	
+	return ctx.redirect('/inicio')
 }

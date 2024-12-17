@@ -1,4 +1,4 @@
-module handles
+module amazon
 
 import net.http
 import net.html
@@ -163,5 +163,3 @@ fn (ah AmazonHandle) get_text_content(mut tags []&html.Tag) string {
 
 	return full_content
 }
-
-

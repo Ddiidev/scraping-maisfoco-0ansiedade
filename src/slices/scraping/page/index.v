@@ -60,37 +60,18 @@ fn (page &PageIndex) index(mut ctx wcontext.WsCtx) veb.Result {
 
 @['/scraping'; post]
 fn (page &PageIndex) scraping(mut ctx wcontext.WsCtx) veb.Result {
-	dados := handles.handle(ctx.form['urlToCrawler']) or {
+	data := handles.handle(ctx.form['urlToScraping']) or {
 		return $veb.html('\\view\\card_dados_fail.html')
 	}
 
-	if dados is models.AmazonScraping {
-		json_dados := json.encode(dados)
-
-		price_printed := dados.price_printed or { 0 }.str()
-		price_kindle_ebook := dados.price_kindle_ebook or { 0 }.str()
-		url := ctx.get_custom_header('HX-Current-URL') or { '' }
-		save_is := 'amazon'
-
-		return $veb.html('\\view\\card_dados_amazon.html')
-	} else if dados is models.InstantGamesScraping {
-		json_dados := json.encode(dados)
-
-		price := dados.price
-		discount := dados.discount or { 0 }.str()
-		old_price := dados.price_old or { 0 }.str()
-		banner_img := dados.images[0] or { models.InstantGamesImage{} }.image_url
-		url := ctx.get_custom_header('HX-Current-URL') or { '' }
-		badges_html := badge.list_badge_to_html(dados.tags.to_list().map({
-			'status': 'none'
-			'label':  it
-		}))
-		save_is := 'instant-gaming'
-
-		return $veb.html('\\view\\card_dados_instantgames.html')
+	if data is models.AmazonScraping {
+		return render_amazom(data, mut ctx)
+	} else if data is models.InstantGamesScraping {
+		return render_instantgaming(data, mut ctx)
 	}
 
-	return ctx.text('erro')
+	err := error("unknown scraping type")
+	return $veb.html('\\view\\card_dados_fail.html')
 }
 
 @['/save/:save_is'; post]
@@ -112,7 +93,6 @@ fn (page &PageIndex) save(mut ctx wcontext.WsCtx, save_is string) veb.Result {
 			return page.modal(mut ctx, 'Falhou ao salvar', 'error: Data already exists')
 		}
 	}
-
 
 	return page.modal(mut ctx, 'Salvou com sucesso!', 'Tudo pronto!')
 }

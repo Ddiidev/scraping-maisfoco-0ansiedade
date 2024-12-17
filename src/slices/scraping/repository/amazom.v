@@ -11,5 +11,4 @@ pub fn RepoAmazon.new(model models.AmazonScraping) ! {
 	sql con {
 		insert model into models.AmazonScraping
 	}!
-	
 }

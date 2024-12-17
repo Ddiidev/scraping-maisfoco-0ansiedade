@@ -2,59 +2,60 @@
 <script src="https://unpkg.com/htmx.org@@1.9.12/dist/ext/include-vals.js"></script>
 
 <article>
-    <section>
-        <div class="flex justify-start align-center margin-bot">
-            <img class="rounded-square margin-lr" style="height: 76px;" src="@banner_img" />
-            <h2 class="margin-lr">@dados.title</h2>
-        </div>
-        <grid class="margin-bot">
-            <div>
-                <img class="margin-bot" src="@banner_img" />
-                <p>Tags:</p>
-                <gridflex>
-                    @badges_html
-                </gridflex>
-            </div>
+	<section>
+		<div class="flex justify-start align-center margin-bot">
+			<img class="rounded-square margin-lr" style="height: 76px;" src="@banner_img" />
+			<h2 class="margin-lr">@data.title</h2>
+		</div>
+		<grid class="margin-bot">
+			<div>
+				<img class="margin-bot" src="@banner_img" />
+				<p>Tags:</p>
+				<gridflex>
+					@badges_html
+				</gridflex>
+			</div>
 
-            <div style="min-height: 600px;">
-                <p>Studio: <b>@dados.studio</b></p>
-                <p>Publicadora: <b>@dados.publisher</b></p>
-                <p>Plataforma de ativação: <b>@dados.activating_plataform</b></p>
-                <p>Gêneros: <b>@dados.genders</b></p>
-                <div class="margin-bot" style="flex-grow: 1;">
-                    <p>Sobre:</p>
-                    <textarea no-outline readonly class="font-bold"
-                        style="width: 100%; height: 80%; resize: none;">@dados.about</textarea>
-                </div>
-                <div style="margin-top: 20px;">
-                    <p>Avaliação: <b>@dados.review_general</b></p>
-                    <p>Nº Avaliações: <b>@dados.qtde_review</b></p>
-                </div>
-            </div>
-        </grid>
+			<div style="min-height: 600px;">
+				<p>Studio: <b>@data.studio</b></p>
+				<p>Publicadora: <b>@data.publisher</b></p>
+				<p>Plataforma de ativação: <b>@data.activating_plataform</b></p>
+				<p>Gêneros: <b>@data.genders</b></p>
+				<div class="margin-bot" style="flex-grow: 1;">
+					<p>Sobre:</p>
+					<textarea no-outline readonly class="font-bold"
+						style="width: 100%; height: 80%; resize: none;">@data.about</textarea>
+				</div>
+				<div style="margin-top: 20px;">
+					<p>Avaliação: <b>@data.review_general</b></p>
+					<p>Nº Avaliações: <b>@data.qtde_review</b></p>
+				</div>
+			</div>
+		</grid>
 
-        <grid class="margin-bt">
-            <article>
-                <h4 class="margin-lr">Preço: <b>$ @price (-${discount}% $ <s>@old_price</s>) </b></h4>
-            </article>
-        </grid>
-    </section>
+		<grid class="margin-bt">
+			<article>
+				<h4 class="margin-lr">Preço: <b>$ @price (-${discount}% $ <s>@old_price</s>) </b></h4>
+			</article>
+		</grid>
+	</section>
 
-    <form hx-post="@url/save/@save_is" hx-ext="json-enc" hx-vals="@json_dados" hx-target="#result-modal">
-        <button type="submit" class="container-full padding-bt">Salvar</button>
-
-        <input type="number" step="0.01" id="price_printed" name="price_printed" style="display: none;" />
-        <input type="number" step="0.01" id="price_kindle_ebook" name="price_kindle_ebook" style="display: none;" />
-        <input type="number" step="0.1" id="geral_evaluation" name="geral_evaluation" style="display: none;" />
-        <input type="number" id="qtde_evaluation" name="qtde_evaluation" style="display: none;" />
-        <input type="text" id="link" name="link" style="display: none;" />
-        <input type="text" id="title" name="title" style="display: none;" />
-        <input type="text" id="author" name="author" style="display: none;" />
-        <textarea id="sinopse" name="sinopse" style="display: none;"></textarea>
-        <input type="text" id="link_amostra" name="link_amostra" style="display: none;" />
-        <input type="text" id="images_links" name="images_links" style="display: none;" />
-        <input type="text" id="thumbnails_links" name="thumbnails_links" style="display: none;" />
-    </form>
-    <div id="result-modal"></div>
+	<form hx-post="@url/save/@save_is" hx-ext="json-enc" hx-vals="@json_data" hx-target="#result-modal">
+		
+		<input type="hidden" name="price" value="@data.price" />
+		<input type="hidden" name="price_old" value="@data.price_old" />
+		<input type="hidden" name="discount" value="@data.discount" />
+		<input type="hidden" name="review_general" value="@data.review_general" />
+		<input type="hidden" name="qtde_review" value="@data.qtde_review" />
+		<input type="hidden" name="title" value="@data.title" />
+		<input type="hidden" name="about" value="@data.about" />
+		<input type="hidden" name="activating_plataform" value="@data.activating_plataform" />
+		<input type="hidden" name="genders" value="@data.genders" />
+		<input type="hidden" name="tags" value="@data.tags" />
+		<input type="hidden" name="studio" value="@data.studio" />
+		<input type="hidden" name="publisher" value="@data.publisher" />
+		<button type="submit" class="container-full padding-bt">Salvar</button>
+	</form>
+	<div id="result-modal"></div>
 
 </article>

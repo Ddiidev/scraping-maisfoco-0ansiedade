@@ -1,4 +1,4 @@
-module handles
+module instant_gaming
 
 // import net.urllib
 import net.http

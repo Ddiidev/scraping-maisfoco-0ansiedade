@@ -18,7 +18,7 @@
 		<form hx-post="@ctx.req.url/scraping" hx-target="#result-scraping" hx-indicator="#loading-result-scraping">
 			<div>
 				<div role="group">
-					<input type="text" name="urlToCrawler" placeholder="Digite a Url para Scraping" required
+					<input type="text" name="urlToScraping" placeholder="Digite a Url para Scraping" required
 						value="https://www.instant-gaming.com/pt/3324-comprar-gris-pc-mac-jogo-steam/?itm_source=home_page&itm_medium=product_recommended" />
 
 					<button type="submit"><b>Trazer dados</b></button>
@@ -35,6 +35,22 @@
 		<div>
 			<div id="loading-result-scraping" class="htmx-indicator loading-dots margin-bt">Carregando</div>
 			<div id="result-scraping"></div>
+		</div>
+
+		<div id="idMeuModal" class="modal" open>
+			<article class="rounded-square modal-content" style="width: 300px;">
+				<header>
+					<div class="flex align-center justify-space-between">
+						<h3>_title</h3>
+						<span class="margin-left  close-modal" xclose-modal>&times;</span>
+					</div>
+				</header>
+				<p>_content</p>
+		
+				<footer class="padding-top flex justify-right">
+					<button class="close-modal">Ok!</button>
+				</footer>
+			</article>
 		</div>
 
 	</section>
