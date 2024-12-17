@@ -1,6 +1,6 @@
 module badge
 
-import slices.shareds.utils
+import veb
 
 pub enum StateBadge {
 	none
@@ -27,8 +27,8 @@ pub fn StateBadge.str_to(state string) ?StateBadge {
 
 // list_badge_to_html lista de dados de badges para tipo especial de string
 // map['status'], map['icon'], map['label']
-pub fn list_badge_to_html(badges []map[string]string) []utils.StringHtml {
-	mut result := []utils.StringHtml{}
+pub fn list_badge_to_html(badges []map[string]string) []veb.RawHtml {
+	mut result := []veb.RawHtml{}
 
 	for current_badge in badges {
 		state := StateBadge.str_to(current_badge['status']) or { StateBadge.failure }
@@ -38,7 +38,7 @@ pub fn list_badge_to_html(badges []map[string]string) []utils.StringHtml {
 	return result
 }
 
-pub fn construct(state StateBadge, icon string, content string) string {
+pub fn construct(state StateBadge, icon string, content string) veb.RawHtml {
 	state_badge := match state {
 		.none {
 			'badge-none'

@@ -48,7 +48,7 @@ body {
 
 button {
 	background-color: var(--primary-color);
-	color: #fff;
+	color: var(--font-color);
 	width: 25%;
 	border: 3px solid var(--border-color);
 	padding: 10px;
@@ -160,7 +160,7 @@ input[type="password"] {
 
 input[type="submit"] {
 	width: 25%;
-	color: #fff;
+	color: var(--font-color);
 	padding: 10px;
 	cursor: pointer;
 	transition: transform 0.1s ease;

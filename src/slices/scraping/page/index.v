@@ -15,7 +15,7 @@ const badges = [
 		'label':  'Amazon Livros'
 	},
 	{
-		'status': 'failure'
+		'status': 'success'
 		'icon':   '/assets/icons/invalide-svgrepo-com.svg'
 		'label':  'InstantGames'
 	},
