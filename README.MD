@@ -1,4 +1,4 @@
-# scraping-maisfoco-0ansiedade 🕷️🛒
+# Scraping mais foco zero ansiedade 🕷️🛒
 
 ## Description
 
