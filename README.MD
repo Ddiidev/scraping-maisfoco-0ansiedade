@@ -86,8 +86,8 @@ Dynamic translation with veb.tr()
 
 ## Supported Platforms
 
-📚 Amazon (Books)
-🎮 Instant Gaming (Games)
+- 📚 Amazon (Books)
+- 🎮 Instant Gaming (Games)
 
 ## Benefits
 
