@@ -1,5 +1,6 @@
 module repository
 
+import os
 import shareds.db
 import scraping.models
 
@@ -12,4 +13,9 @@ fn init() {
 		create table models.InstantGamesScraping
 		create table models.InstantGamesImage
 	} or { panic(err.str()) }
+}
+
+pub fn write_json(current_date string, name_file string, content string) ! {
+	os.mkdir_all('./db/jsons/${current_date}') or {}
+	os.write_file('./db/jsons/${current_date}/${name_file}', content)!
 }

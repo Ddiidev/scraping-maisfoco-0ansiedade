@@ -1,5 +1,7 @@
 module models
 
+import time
+
 pub type UserTags = string
 
 pub fn (ut UserTags) to_list() []string {
@@ -25,16 +27,17 @@ pub struct InstantGamesScraping {
 pub:
 	id                   int @[primary; sql: serial]
 	price                f64
+	qtde_review          int
 	price_old            ?f64
 	discount             ?int
 	review_general       string
-	qtde_review          int
-	images               []InstantGamesImage @[fkey: 'parent_id']
 	title                string
 	about                string
 	activating_plataform string
-	genders              Genders
-	tags                 UserTags
 	studio               string
 	publisher            string
+	genders              Genders
+	tags                 UserTags
+	current_date         time.Time           @[omitempty; sql_type: 'INTEGER']
+	images               []InstantGamesImage @[fkey: 'parent_id']
 }

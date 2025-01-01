@@ -16,6 +16,11 @@ const badges = [
 		'label':  'InstantGames'
 	},
 	{
+		'status': 'success'
+		'icon':   '/assets/icons/validate-svgrepo-com.svg'
+		'label':  'Mercado Livre Play'
+	},
+	{
 		'status': 'failure'
 		'icon':   '/assets/icons/invalide-svgrepo-com.svg'
 		'label':  'EpicGames'

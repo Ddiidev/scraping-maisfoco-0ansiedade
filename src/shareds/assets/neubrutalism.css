@@ -237,7 +237,7 @@ textarea {
 }
 
 /* [role="group"]:focus-within { */
-	/* outline: 3px solid var(--secondary-color);
+/* outline: 3px solid var(--secondary-color);
 	outline-style: dashed;
 	outline-offset: 5px; */
 /* } */
@@ -432,4 +432,72 @@ gridflex>* {
 	display: flex;
 	visibility: visible;
 	opacity: 1;
+}
+
+input[type="date"] {
+	background-color: var(--background-color);
+	color: var(--font-color);
+	font-family: var(--font-family);
+	font-size: 1rem;
+	padding: 0.5rem;
+	border: 3px solid var(--border-color);
+	box-shadow: 3px 3px 0 var(--border-color);
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+}
+
+input[type="date"]:hover {
+	transform: translate(-1px, -1px);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	padding: 5px;
+	cursor: pointer;
+	border: 2px solid var(--border-color);
+	background-color: var(--primary-color);
+	border-radius: var(--default-rounded-square);
+}
+
+.tabs {
+	display: flex;
+	justify-content: left;
+	background-color: var(--background-color);
+	padding: 10px 0;
+}
+
+.tablinks {
+    background-color: var(--background-color);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    color: var(--font-color);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+	border: 3px solid var(--border-color);
+    box-shadow: -3px -3px 0 var(--border-color); /* Shadow on top */
+}
+
+.tablinks.active {
+	transform: translate(-2px, -2px);
+	box-shadow: -2px -2px 0px rgba(0, 0, 0, 1);
+	background-color: var(--primary-color);
+}
+
+.tablinks:hover {
+	transform: translate(1px, 1px);
+	background-color: var(--none-color);
+}
+
+.tabcontent {
+	display: none;
+	padding: 20px;
+	animation: fadeEffect 0.5s;
+}
+
+@keyframes fadeEffect {
+	from {opacity: 0;}
+	to {opacity: 1;}
 }

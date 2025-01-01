@@ -41,8 +41,9 @@
 		</grid>
 	</section>
 
-	<form class="margin-lr" hx-post="/home/save/@save_is" hx-ext="json-enc" hx-vals="@json_data"
+	<form class="margin-lr" hx-post="/home/save/@save_is" hx-ext="json-enc-typed" hx-vals="@json_data"
 		hx-target="#result-modal">
+		<input style="display: none;" type="number" name="current_date" id="input_current_date" force-update />
 		<button type="submit" class="container-full padding-bt">%bt_save</button>
 	</form>
 	<div id="result-modal"></div>

@@ -1,6 +1,6 @@
 module models
 
-pub type ThumbLink = string
+import time
 
 @[table: 'AmazonScrapings']
 pub struct AmazonScraping {
@@ -15,4 +15,5 @@ pub:
 	sinopse            string
 	images_links       string
 	thumbnails_links   ThumbLink
+	current_date       time.Time @[omitempty; sql_type: 'INTEGER']
 }

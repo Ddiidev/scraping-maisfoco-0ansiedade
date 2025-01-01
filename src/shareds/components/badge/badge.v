@@ -9,7 +9,7 @@ pub enum StateBadge {
 }
 
 const map_state_class_css = {
-	StateBadge.none: 'badge-none'
+	StateBadge.none:    'badge-none'
 	StateBadge.failure: 'badge-error'
 	StateBadge.success: 'badge-success'
 }
