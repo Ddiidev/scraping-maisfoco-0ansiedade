@@ -5,9 +5,12 @@
 		<form hx-post="/home/scraping" hx-target="#result-scraping" hx-indicator="#loading-result-scraping">
 			<div>
 				<div role="group">
-					<input type="text" name="urlToScraping" placeholder="Digite a Url para Scraping" required
-					value="https://play.MercadoLivrePlay.com.br/assistir/onde-os-fracos-nao-tem-vez/bce23ac21d4b477a80961dcb6b07a49d" />
-
+					<div style="position: relative; width: 100%;">
+						<input type="text" name="urlToScraping" placeholder="Digite a Url para Scraping" required
+							value="https://play.MercadoLivrePlay.com.br/assistir/onde-os-fracos-nao-tem-vez/bce23ac21d4b477a80961dcb6b07a49d"
+							id="urlToScraping"/>
+						<div onclick="clearTextField()" class="clear-button" style="position: absolute; top: 25%; right: 20px;">✕</div>
+					</div>
 					<button type="submit"><b>%scrape</b></button>
 				</div>
 				<div class="margin-bt m-childs-right">
@@ -28,3 +31,9 @@
 
 	</section>
 </div>
+
+<script>
+	function clearTextField() {
+		document.getElementById('urlToScraping').value = '';
+	}
+</script>
