@@ -19,18 +19,18 @@ pub fn (ih InstantGamesHandle) scraping_instantgames(url string) !models.Instant
 	mut doc := html.parse(resp.body)
 
 	return models.InstantGamesScraping{
+		tags:                 ih.get_tags(mut doc)!
 		title:                ih.get_title(mut doc)!
 		about:                ih.get_about(mut doc)!
 		price:                ih.get_price(mut doc)!
-		price_old:            ih.get_price_old(mut doc)
-		discount:             ih.get_discount_old(mut doc)
 		studio:               ih.get_studio(mut doc)!
-		publisher:            ih.get_publisher(mut doc)!
 		review_general:       ih.get_review(mut doc)!
-		qtde_review:          ih.get_qtde_reviews(mut doc)!
 		images:               ih.get_images(mut doc)!
 		genders:              ih.get_genders(mut doc)!
-		tags:                 ih.get_tags(mut doc)!
+		price_old:            ih.get_price_old(mut doc)
+		publisher:            ih.get_publisher(mut doc)!
+		discount:             ih.get_discount_old(mut doc)
+		qtde_review:          ih.get_qtde_reviews(mut doc)!
 		activating_plataform: ih.get_activating_plataform(mut doc)!
 	}
 }

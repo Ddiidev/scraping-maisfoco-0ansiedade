@@ -22,7 +22,7 @@ pub fn (g Genders) add(genders ...string) Genders {
 	return g + ',' + genders.join(',')
 }
 
-@[table: 'InstantGamesScraping']
+@[table: 'InstantGamesScrapings']
 pub struct InstantGamesScraping {
 pub:
 	id                   int @[primary; sql: serial]
@@ -36,6 +36,7 @@ pub:
 	activating_plataform string
 	studio               string
 	publisher            string
+	preview_video        string
 	genders              Genders
 	tags                 UserTags
 	current_date         time.Time           @[omitempty; sql_type: 'INTEGER']

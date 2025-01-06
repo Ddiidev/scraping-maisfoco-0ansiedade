@@ -164,10 +164,9 @@ img[nbtl] {
 }
 
 
-.panel {
+[nbtl-border] {
 	background-color: var(--background-color);
 	border: 3px solid var(--border-color);
-	padding: 16px;
 	box-shadow: 6px 6px 0 var(--border-color);
 }
 
@@ -186,10 +185,10 @@ input[type="password"] {
 	width: 100%;
 	padding: 16px;
 	font-weight: bold;
+	color: var(--font-color);
 	border: 3px solid var(--border-color);
 	box-shadow: 6px 6px 0 var(--border-color);
 	background-color: var(--background-color);
-	color: var(--font-color);
 }
 
 input[type="submit"] {
@@ -233,6 +232,7 @@ textarea {
 }
 
 [role="group"] button {
+	z-index: 99999;
 	border-left: 3px solid var(--border-color) !important;
 }
 
