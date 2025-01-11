@@ -25,7 +25,7 @@ fn RepoAmazon.save_json(model models.AmazonScraping) ! {
 	current_date := model.current_date.get_fmt_date_str(.hyphen, .ddmmyyyy)
 	date_file := model.current_date.get_fmt_str(.hyphen, .hhmm24, .ddmmyyyy).replace(':',
 		'.')
-	free := if model.price_printed or {0} == 0 { 'Free' } else { '' }
+	free := if model.price_printed or { 0 } == 0 { 'free-' } else { '' }
 
-	write_json(current_date, 'amazon-${free}-${date_file}.json', json_data)!
+	write_json(current_date, 'amazon-${free}${date_file}.json', json_data)!
 }
