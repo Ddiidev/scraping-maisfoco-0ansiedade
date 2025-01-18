@@ -21,6 +21,11 @@ const badges = [
 		'label':  'Mercado Livre Play'
 	},
 	{
+		'status': 'success'
+		'icon':   '/assets/icons/validate-svgrepo-com.svg'
+		'label':  'Netflix'
+	},
+	{
 		'status': 'failure'
 		'icon':   '/assets/icons/invalide-svgrepo-com.svg'
 		'label':  'EpicGames'

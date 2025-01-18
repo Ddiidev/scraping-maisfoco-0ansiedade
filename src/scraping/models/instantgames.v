@@ -12,16 +12,6 @@ pub fn (ut UserTags) add(tags ...string) UserTags {
 	return ut + ',' + tags.join(',')
 }
 
-pub type Genders = string
-
-pub fn (g Genders) to_list() []string {
-	return g.split(',')
-}
-
-pub fn (g Genders) add(genders ...string) Genders {
-	return g + ',' + genders.join(',')
-}
-
 @[table: 'InstantGamesScrapings']
 pub struct InstantGamesScraping {
 pub:

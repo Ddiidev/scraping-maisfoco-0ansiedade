@@ -4,11 +4,13 @@ import veb
 import scraping.models
 import scraping.handles.amazon
 import scraping.handles.instant_gaming
+import scraping.handles.scraping_netflix
 import scraping.handles.mercado_livre_play
 
 type TypeScrapings = models.AmazonScraping
 	| models.InstantGamesScraping
 	| []models.MercadoLivrePlayScraping
+	| models.NetflixScraping
 
 pub fn handle(url string, lang string) !TypeScrapings {
 	return if ['amzn.to', 'amazon'].any(url.contains(it)) {
@@ -23,6 +25,10 @@ pub fn handle(url string, lang string) !TypeScrapings {
 		scraping_handle := mercado_livre_play.MercadoLivrePlayHandle{lang}
 
 		return scraping_handle.scraping_mercado_livre_play(url)!
+	} else if url.contains('netflix') {
+		scraping_handle := scraping_netflix.NetflixHandle{}
+
+		return scraping_handle.scraping_netflix(url)!
 	} else {
 		error(veb.tr(lang, 'msg_error_not_found_handler_from_plataform'))
 	}

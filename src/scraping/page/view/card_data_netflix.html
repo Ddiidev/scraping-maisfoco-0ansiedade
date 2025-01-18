@@ -1,0 +1,52 @@
+<article>
+	<section>
+		<form hx-post="/home/save/@save_is" hx-ext="json-enc-typed" hx-vals="@json_data" hx-target="#result-modal">
+
+			<div class="flex justify-start align-center margin-bot">
+				<img nbtl class="margin-lr" style="height: 76px;" src="@data.thumbnails_links" />
+				<h2 class="margin-lr">@data.title</h2>
+			</div>
+			<grid class="margin-bot">
+				<div>
+					<img nbtl class="margin-bot margin-lr" src="@data.thumbnails_links" />
+					<div class="margin-lr">
+						<p>Gêneros:</p>
+						<gridflex>
+							@for gender in data.genders.to_list()
+							<span class="badge">@gender</span>
+							@endfor
+						</gridflex>
+					</div>
+				</div>
+
+				<div style="min-height: 600px;">
+					<p>Ano: <b>@data.year</b></p>
+					<div class="margin-bot padding-bot" style="flex-grow: 1;">
+						<p>Sinopse:</p>
+						<textarea no-outline readonly class="font-bold"
+							style="width: 100%; height: 80%; resize: none;">@data.overview</textarea>
+					</div>
+					<div class="margin-lr">
+						<p>Link:</p>
+						<a href="@data.link" target="_blank" class="font-bold">Assistir no Netflix</a>
+					</div>
+				</div>
+			</grid>
+
+			<input style="display: none;" type="number" name="current_date" id="input_current_date" force-update />
+			<div class="margin-lr">
+				<button type="submit" class="container-full padding-bt margin-right">%bt_save</button>
+			</div>
+		</form>
+	</section>
+	<div id="result-modal"></div>
+
+</article>
+
+<script>
+	"use strict";
+	function updateVideoPreview() {
+		const src = convertToEmbed(document.getElementById("input_preview_video").value);
+		document.getElementById("preview_video").src = src;
+	}
+</script>

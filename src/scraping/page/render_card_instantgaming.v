@@ -10,6 +10,7 @@ fn render_instantgaming(data models.InstantGamesScraping, mut ctx wcontext.WsCtx
 	json_data := json.encode(data)
 
 	price := data.price
+	name_search := '${data.title} trailer'
 	discount := data.discount or { 0 }.str()
 	old_price := data.price_old or { 0 }.str()
 	banner_img := data.images[0] or { models.InstantGamesImage{} }.image_url
