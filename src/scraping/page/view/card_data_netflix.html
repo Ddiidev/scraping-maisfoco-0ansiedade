@@ -27,8 +27,19 @@
 							style="width: 100%; height: 80%; resize: none;">@data.overview</textarea>
 					</div>
 					<div class="margin-lr">
-						<p>Link:</p>
-						<a href="@data.link" target="_blank" class="font-bold">Assistir no Netflix</a>
+						<p>%video_preview:</p>
+						<input type="text" id="input_preview_video" name="preview_video"
+							oninput="updateVideoPreview()" value="@data.trailer_link" force-update class="font-bold"
+							placeholder="Insira a URL do vídeo" style="width: 100%;" />
+						<a href="@data.trailer_link" target="_blank" class="font-bold">Buscar vídeo (@data.title)</a>
+					</div>
+					<div class="margin-bot padding-bot" style="flex-grow: 1;">
+						<iframe id="preview_video" nbtl-border width="100%" height="315" frameborder="0"
+							allowfullscreen></iframe>
+						<script>
+							const src = convertToEmbed("@data.trailer_link");
+							document.getElementById("preview_video").src = src;
+						</script>
 					</div>
 				</div>
 			</grid>
