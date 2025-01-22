@@ -41,6 +41,8 @@ pub fn (self MercadoLivrePlayHandle) scraping_mercado_livre_play(url string) ?[]
 		return none
 	}
 
+	trailer_link := tmdb.search_trailer_movie(data.results[0].id) or { '' }
+
 	mut contents := []models.MercadoLivrePlayScraping{}
 
 	for i, result in data.results {
@@ -55,6 +57,7 @@ pub fn (self MercadoLivrePlayHandle) scraping_mercado_livre_play(url string) ?[]
 			genders:          result.genre_ids.map(genres[it]).join(', ')
 			qtde_evaluation:  result.vote_count
 			geral_evaluation: result.vote_average
+			trailer_link:     trailer_link
 			thumbnails_links: 'https://image.tmdb.org/t/p/w500/${result.poster_path}'
 		}
 	}

@@ -35,5 +35,6 @@ pub:
 	languages        Languages
 	subtitles        Subtitles
 	thumbnails_links ThumbLink
+	trailer_link     TrailerLink
 	current_date     time.Time @[omitempty; sql_type: 'INTEGER']
 }

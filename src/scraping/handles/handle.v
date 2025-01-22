@@ -21,7 +21,7 @@ pub fn handle(url string, lang string) !TypeScrapings {
 		scraping_handle := instant_gaming.InstantGamesHandle{lang}
 
 		return scraping_handle.scraping_instantgames(url)!
-	} else if url.contains('MercadoLivrePlay') {
+	} else if url.contains('mercadolivre') {
 		scraping_handle := mercado_livre_play.MercadoLivrePlayHandle{lang}
 
 		return scraping_handle.scraping_mercado_livre_play(url)!

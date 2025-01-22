@@ -21,7 +21,7 @@ fn main() {
 	wservice.register_controller[page_scraping.PageIndex, wcontext.WsCtx]('/home', mut
 		ctrl_page_index)!
 
-	veb.run[Wservice, wcontext.WsCtx](mut wservice, 3030)
+	veb.run[Wservice, wcontext.WsCtx](mut wservice, 5050)
 }
 
 fn (ws &Wservice) index(mut ctx wcontext.WsCtx) veb.Result {

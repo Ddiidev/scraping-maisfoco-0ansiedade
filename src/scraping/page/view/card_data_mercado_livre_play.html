@@ -5,17 +5,16 @@
 			@if i == 0
 			active
 			@endif
-			"
-			onclick="openTab(event, '@i')">%option ${i + 1}</button>
+			" onclick="openTab(event, '@i')">%option ${i + 1}</button>
 		@endfor
 	</div>
 
 	@for i, data in datas
 	<div id="@i" class="tabcontent"
-		@if i == 0
-		style="display:block"
+		@if i==0
+			style="display:block"
 		@else
-		style="display:none"
+			style="display:none"
 		@endif
 	>
 		<section>
@@ -33,6 +32,21 @@
 					<div class="margin-bot padding-bot" style="flex-grow: 1;">
 						<p>%synopsis:</p><textarea no-outline readonly class="font-bold"
 							style="width: 100%; height: 80%;">@data.overview</textarea>
+					</div>
+					<div class="margin-lr">
+						<p>%video_preview:</p>
+						<input type="text" id="input_preview_video-@i" name="preview_video"
+							oninput="updateVideoPreview('@i')" value="@data.trailer_link" force-update class="font-bold"
+							placeholder="Insira a URL do vídeo" style="width: 100%;" />
+						<a href="@data.trailer_link" target="_blank" class="font-bold">Buscar vídeo (@data.title)</a>
+					</div>
+					<div class="margin-bot padding-bot" style="flex-grow: 1;">
+						<iframe id="preview_video-@i" nbtl-border width="100%" height="315" frameborder="0"
+							allowfullscreen></iframe>
+						<script>
+							const src = convertToEmbed("@data.trailer_link");
+							document.getElementById("preview_video-@i").src = src;
+						</script>
 					</div>
 					<div class="margin-top margin padding-top">
 						<p>%overall_rating: <b>@data.geral_evaluation</b></p>
@@ -52,3 +66,11 @@
 
 	<div id="result-modal"></div>
 </article>
+
+<script>
+	"use strict";
+	function updateVideoPreview(i) {
+		const src = convertToEmbed(document.getElementById('input_preview_video-' + i).value);
+		document.getElementById('preview_video-' + i).src = src;
+	}
+</script>
