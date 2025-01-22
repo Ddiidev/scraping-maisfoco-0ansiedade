@@ -8,9 +8,9 @@ import scraping.models
 pub struct NetflixHandle {}
 
 pub fn (nh NetflixHandle) scraping_netflix(url string) !models.NetflixScraping {
-	current_dir := '${@FILE}'.split('\\')#[0..-1].join('\\')
+	current_dir := '${@VMODROOT}'
 
-	webview_dir := os.join_path(current_dir, 'webview', 'scraping_netflix.exe')
+	webview_dir := os.join_path(current_dir, 'src', 'webview', 'scraping_pages.exe')
 
 	res := os.execute_or_exit('${webview_dir} "${url}" "scraping_netflix"')
 

@@ -44,6 +44,14 @@ fn (page &PageIndex) save(mut ctx wcontext.WsCtx, save_is string) veb.Result {
 		repository.RepoNetflix.new(js) or {
 			return page.modal(mut ctx, veb.tr(lng, 'msg_error_fail_to_save'), 'error: Data already exists')
 		}
+	} else if save_is == 'livros_gratuitos' {
+		js := json.decode(models.LivroGratuitoScraping, ctx.req.data) or {
+			return page.modal(mut ctx, veb.tr(lng, 'msg_error_fail_to_save'), 'error: Invalid JSON data')
+		}
+
+		repository.RepoLivrosGratuitos.new(js) or {
+			return page.modal(mut ctx, veb.tr(lng, 'msg_error_fail_to_save'), 'error: Data already exists')
+		}
 	}
 
 	return page.modal(mut ctx, veb.tr(lng, 'msg_successfully_saved'), veb.tr(lng, 'msg_all_completed'))

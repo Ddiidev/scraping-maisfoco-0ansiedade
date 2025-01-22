@@ -62,6 +62,8 @@ fn (page &PageIndex) scraping(mut ctx wcontext.WsCtx) veb.Result {
 		return render_mercado_livre_play(data, mut ctx)
 	} else if data is models.NetflixScraping {
 		return render_netflix(data, mut ctx)
+	} else if data is models.LivroGratuitoScraping {
+		return render_livros_gratuitos(data, mut ctx)
 	}
 
 	err := error(veb.tr(lng, 'msg_error_msg_unknown_scrape_type'))
