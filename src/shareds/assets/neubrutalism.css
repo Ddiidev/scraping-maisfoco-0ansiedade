@@ -232,7 +232,7 @@ textarea {
 }
 
 [role="group"] button {
-	z-index: 99999;
+	z-index: 1;
 	border-left: 3px solid var(--border-color) !important;
 }
 

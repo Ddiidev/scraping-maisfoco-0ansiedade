@@ -25,6 +25,8 @@ fn (page &PageIndex) save(mut ctx wcontext.WsCtx, save_is string) veb.Result {
 			return page.modal(mut ctx, veb.tr(lng, 'msg_error_fail_to_save'), 'error: Invalid JSON data')
 		}
 
+		dump(js)
+
 		repository.RepoInstantGaming.new(js) or {
 			return page.modal(mut ctx, veb.tr(lng, 'msg_error_fail_to_save'), 'error: Data already exists')
 		}

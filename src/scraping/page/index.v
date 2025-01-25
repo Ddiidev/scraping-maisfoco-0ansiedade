@@ -21,7 +21,7 @@ fn (page &PageIndex) current_lang(mut ctx wcontext.WsCtx) veb.Result {
 					data:  page.current_lang.lang
 				) or { continue }
 			}
-			time.sleep(750 * time.millisecond)
+			time.sleep(1500 * time.millisecond)
 		}
 		sse_conn.close()
 	}(mut &ctx)

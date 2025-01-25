@@ -30,7 +30,7 @@ pub fn (ih InstantGamesHandle) scraping_instantgames(url string) !models.Instant
 		price_old:            ih.get_price_old(mut doc)
 		publisher:            ih.get_publisher(mut doc)!
 		discount:             ih.get_discount_old(mut doc)
-		qtde_review:          ih.get_qtde_reviews(mut doc)!
+		qtde_review:          ih.get_qtde_reviews(mut doc) or { 0 }
 		activating_plataform: ih.get_activating_plataform(mut doc)!
 	}
 }
@@ -85,14 +85,13 @@ fn (ih InstantGamesHandle) get_title(mut doc html.DocumentObjectModel) !string {
 	title := doc.get_tags_by_class_name('game-title')[0] or {
 		return error('${veb.tr(ih.lang, 'msg_error_title_not_identified')}')
 	}
-
 	return title.content
 }
 
 fn (ih InstantGamesHandle) get_about(mut doc html.DocumentObjectModel) !string {
 	mut tags_description := doc.get_tags_by_attribute_value('itemprop', 'description')
 
-	mut description := ih.get_text_content(mut tags_description).trim_space()
+	mut description := ih.get_text_content(tags_description).trim_space()
 
 	if description.len_utf8() == 0 {
 		for tag in tags_description[0].children {
@@ -173,15 +172,18 @@ fn (ih InstantGamesHandle) get_review(mut doc html.DocumentObjectModel) !string 
 		return error('${veb.tr(ih.lang, 'msg_error_unidentified_review_table')}')
 	}
 
-	mut tag_table_cell := tables.get_tags_by_class_name('table-cell')#[-4..][1] or {
-		return error('${veb.tr(ih.lang, 'msg_error_unidentified_review_table')} ("table-cell")')
+	mut tag_table_cells := tables.get_tags_by_class_name('table-cell')
+	mut tag_table_cell := &html.Tag{}
+
+	for i, tag in tag_table_cells {
+		if (tag.text().trim_space().contains('Reviews recentes')
+			|| tag.text().trim_space().contains('Todas Reviews')) && i < tag_table_cells.len - 1 {
+			tag_table_cell = tag_table_cells[i + 1]
+			break
+		}
 	}
 
-	text := tag_table_cell.get_tag('span') or {
-		return error('${veb.tr(ih.lang, 'msg_error_unidentified_review_table')} ("span")')
-	}
-
-	return text.content.trim_space()
+	return ih.remove_extras_spaces_between_text(tag_table_cell.text()).replace('\n', '').trim_space()
 }
 
 fn (ih InstantGamesHandle) get_qtde_reviews(mut doc html.DocumentObjectModel) !int {
@@ -200,10 +202,10 @@ fn (ih InstantGamesHandle) get_qtde_reviews(mut doc html.DocumentObjectModel) !i
 	return int(utils.only_number(text.content))
 }
 
-fn (ih InstantGamesHandle) get_text_content(mut tags []&html.Tag) string {
+fn (ih InstantGamesHandle) get_text_content(tags []&html.Tag) string {
 	mut full_content := ''
 
-	for mut tag in tags {
+	for tag in tags {
 		if tag.name in ['br/', 'span', 'p'] {
 			content := tag.content.trim_string_left(' ').trim_string_right(' ')
 			if content.len_utf8() > 0 {
@@ -212,9 +214,29 @@ fn (ih InstantGamesHandle) get_text_content(mut tags []&html.Tag) string {
 		}
 
 		if tag.children.len > 0 {
-			full_content += ih.get_text_content(mut tag.children)
+			full_content += ih.get_text_content(tag.children)
 		}
 	}
 
 	return full_content
+}
+
+// remove_extras_spaces_between_text Remove extra spaces between text
+// ex: "  Hello      World! " -> "  Hello World! "
+fn (ih InstantGamesHandle) remove_extras_spaces_between_text(content string) string {
+	mut text := ''
+	mut prev_space := false
+
+	for chr in content {
+		if (chr == ` ` || chr == `\t`) && !prev_space {
+			prev_space = true
+		} else if (chr == ` ` || chr == `\t`) && prev_space {
+			continue
+		} else if !(chr == ` ` || chr == `\t`) {
+			prev_space = false
+		}
+		text += chr.ascii_str()
+	}
+
+	return text
 }

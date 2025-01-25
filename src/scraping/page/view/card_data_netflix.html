@@ -28,13 +28,26 @@
 					</div>
 					<div class="margin-lr">
 						<p>%video_preview:</p>
-						<input type="text" id="input_preview_video" name="preview_video"
-							oninput="updateVideoPreview()" value="@data.trailer_link" force-update class="font-bold"
+						<input type="text" id="input_trailer_link" name="trailer_link"
+							force-update
+							oninput="updateTrailer()"
+
+							@if !(data.trailer_link == none)
+							value="@data.trailer_link"
+							@endif
+
+							force-update class="font-bold"
 							placeholder="Insira a URL do vídeo" style="width: 100%;" />
+
+						@if data.trailer_link == none
+						<a href="https://www.youtube.com/results?search_query=@name_search" target="_blank" class="font-bold">Buscar vídeo (@data.title)</a>
+						@else
 						<a href="@data.trailer_link" target="_blank" class="font-bold">Buscar vídeo (@data.title)</a>
+						@endif
+
 					</div>
 					<div class="margin-bot padding-bot" style="flex-grow: 1;">
-						<iframe id="preview_video" nbtl-border width="100%" height="315" frameborder="0"
+						<iframe id="trailer_link" nbtl-border width="100%" height="315" frameborder="0"
 							allowfullscreen></iframe>
 						<script>
 							const src = convertToEmbed("@data.trailer_link");
@@ -56,8 +69,8 @@
 
 <script>
 	"use strict";
-	function updateVideoPreview() {
-		const src = convertToEmbed(document.getElementById("input_preview_video").value);
-		document.getElementById("preview_video").src = src;
+	function updateTrailer() {
+		const src = convertToEmbed(document.getElementById("input_trailer_link").value);
+		document.getElementById("trailer_link").src = src;
 	}
 </script>

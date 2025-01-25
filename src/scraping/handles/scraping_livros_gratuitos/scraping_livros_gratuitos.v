@@ -7,9 +7,9 @@ import scraping.models
 pub struct LivrosGratuitosHandle {}
 
 pub fn (nh LivrosGratuitosHandle) scraping_livros_gratuitos(url string) !models.LivroGratuitoScraping {
-	current_dir := '${@VMODROOT}'
+	current_dir := os.executable().split('\\')#[0..-1].join('\\')
 
-	webview_dir := os.join_path(current_dir, 'src', 'webview', 'scraping_pages.exe')
+	webview_dir := os.join_path(current_dir, 'webview', 'scraping_pages.exe')
 
 	res := os.execute_or_exit('${webview_dir} "${url}" "scraping_livros_gratuitos"')
 

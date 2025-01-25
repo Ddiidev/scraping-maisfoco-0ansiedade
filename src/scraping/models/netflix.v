@@ -10,6 +10,6 @@ pub:
 	link             string
 	genders          Genders
 	thumbnails_links ThumbLink
-	trailer_link     TrailerLink
+	trailer_link     ?TrailerLink
 	current_date     time.Time @[omitempty; sql_type: 'INTEGER']
 }

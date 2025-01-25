@@ -2,6 +2,7 @@ module models
 
 pub struct TMDBResult {
 pub mut:
+	multimedia    MultimediaMode
 	page          int
 	results       []Results
 	total_pages   int

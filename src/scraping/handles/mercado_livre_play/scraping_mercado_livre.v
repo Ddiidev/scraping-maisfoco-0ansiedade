@@ -41,7 +41,9 @@ pub fn (self MercadoLivrePlayHandle) scraping_mercado_livre_play(url string) ?[]
 		return none
 	}
 
-	trailer_link := tmdb.search_trailer_movie(data.results[0].id) or { '' }
+	trailer_link := tmdb.search_trailer_movie(id: data.results[0].id, mode: data.multimedia) or {
+		''
+	}
 
 	mut contents := []models.MercadoLivrePlayScraping{}
 

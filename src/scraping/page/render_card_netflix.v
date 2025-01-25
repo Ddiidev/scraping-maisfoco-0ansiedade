@@ -10,5 +10,7 @@ fn render_netflix(data models.NetflixScraping, mut ctx wcontext.WsCtx) veb.Resul
 
 	json_data := json.encode(data)
 
+	name_search := '${data.title} trailer'
+
 	return $veb.html('\\view\\card_data_netflix.html')
 }
