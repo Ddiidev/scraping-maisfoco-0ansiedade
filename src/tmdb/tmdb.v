@@ -32,12 +32,9 @@ pub:
 pub fn search_multimedia(name string) ?models.TMDBResult {
 	mut res := search_multimedia_with_params(name: name)
 
-	dump(res?.multimedia)
 	if res == none || res?.total_results == 0 {
 		res = search_multimedia_with_params(name: name, mode: .search_tv)
 	}
-
-	dump(res?.multimedia)
 
 	return res
 }

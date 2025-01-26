@@ -1,5 +1,6 @@
 # Binaries for programs and plugins
 main
+build
 crawler_maisfoco_zeroansiedade
 *.exe
 *.exe~
