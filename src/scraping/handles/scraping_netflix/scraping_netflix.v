@@ -21,6 +21,7 @@ pub fn (nh NetflixHandle) scraping_netflix(url string) !models.NetflixScraping {
 	}
 
 	multimedia := tmdb.search_multimedia(obj.title) or { return obj }
+
 	if multimedia.total_pages == 0 {
 		return obj
 	}
